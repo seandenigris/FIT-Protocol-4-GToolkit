@@ -9,7 +9,6 @@ Class {
 
 { #category : #accessing }
 FpFitActivity >> cadenceChart [
-
 	^ self chart: #cadence
 ]
 
@@ -46,6 +45,19 @@ FpFitActivity >> data [
 { #category : #'as yet unclassified' }
 FpFitActivity >> data: aCollection [ 
 	data := aCollection
+]
+
+{ #category : #accessing }
+FpFitActivity >> dataFrame [
+	| result |
+	result := DataFrame withColumns: {
+		self data collect: #cadence.
+		self data collect: #pelotonResistance.
+		self data collect: #power }.
+	result 
+		columnNames: #(cadence pelotonResistance power);
+		rowNames: (self data collect: #time).
+	^ result
 ]
 
 { #category : #accessing }
