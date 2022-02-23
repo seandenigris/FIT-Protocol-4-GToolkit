@@ -10,16 +10,17 @@ FpFITDataResource class >> fileExtensions [
 ]
 
 { #category : #accessing }
+FpFITDataResource >> activity [
+	^ FpFitActivity fromResource: self
+]
+
+{ #category : #accessing }
 FpFITDataResource >> csv [
 	| csvFile csvResource rawRecords records |
 	csvFile := self file withoutExtension, 'csv'.
 	csvFile exists ifFalse: [ self exportAsCSV ].
 	csvResource := RlCSV on: csvFile.
-	rawRecords := (csvResource asArraysOfStrings allButFirst: 10) allButLast: 2.
-	records := rawRecords collect: [ :e | FpFitRecord on: e ].
-	^ FpFitActivity new
-		data: records;
-		yourself
+	^ csvResource asArraysOfStrings
 ]
 
 { #category : #accessing }

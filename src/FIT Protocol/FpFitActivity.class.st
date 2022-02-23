@@ -7,6 +7,17 @@ Class {
 	#category : #'FIT Protocol-FIT Protocol'
 }
 
+{ #category : #'instance creation' }
+FpFitActivity class >> fromResource: convertibleToResource [
+	| rawData recordRows records |
+	rawData := convertibleToResource asRlResource csv.
+	recordRows := (rawData allButFirst: 10) allButLast: 2.
+	records:= recordRows collect: [ :e | FpFitRecord on: e ].
+	^ self new
+		data: records;
+		yourself
+]
+
 { #category : #accessing }
 FpFitActivity >> cadenceChart [
 	^ self chart: #cadence
