@@ -37,7 +37,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2022-02-23T11:06:52.657473-05:00"
+						"dateAndTimeString" : "2022-02-23T11:06:45.031095-05:00"
 					}
 				},
 				"uid" : {
@@ -47,44 +47,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Garmin's \"Flexible and Interoperable Data Transfer\" seems to be an open, well-documented, widely-adopted format. Hooray! Thanks for sharing with the world :)"
-			},
-			{
-				"__type" : "textSnippet",
-				"children" : {
-					"__type" : "snippets",
-					"items" : [ ]
-				},
-				"createEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"createTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2022-02-23T11:06:54.214261-05:00"
-					}
-				},
-				"editEmail" : {
-					"__type" : "email",
-					"emailString" : "<unknown>"
-				},
-				"editTime" : {
-					"__type" : "time",
-					"time" : {
-						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2022-02-23T11:07:05.745957-05:00"
-					}
-				},
-				"uid" : {
-					"__type" : "uid",
-					"uidString" : "YIQVZBOVDQC6rny+AWM99w=="
-				},
-				"paragraphStyle" : {
-					"__type" : "textStyle"
-				},
-				"string" : "Now for the implementation. Buckle your seatbelt."
+				"string" : "Garmin's \"Flexible and Interoperable Data Transfer\" seems to be an open, well-documented, widely-adopted format. Hooray! Thanks for the lauda"
 			},
 			{
 				"__type" : "textSnippet",
@@ -111,7 +74,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2022-02-23T11:07:12.61624-05:00"
+						"dateAndTimeString" : "2022-02-22T12:36:09.539131-05:00"
 					}
 				},
 				"uid" : {
@@ -121,7 +84,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "It's binary, ugh. The [website](https://developer.garmin.com/fit/overview/) offers [an SDK](https://developer.garmin.com/fit/download/) which seems to be implemented in any awful language of your choice - C, C++, Java - the gang's all here!"
+				"string" : "The [website](https://developer.garmin.com/fit/overview/) offers [an SDK](https://developer.garmin.com/fit/download/) which seems to be implemented in any awful language of your choice - C, C++, Java - the gang's all here!"
 			},
 			{
 				"__type" : "textSnippet",
