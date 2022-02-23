@@ -11,6 +11,11 @@ FpFITDataResource class >> allFromFiles [
 	^ fitFiles collect: [ :e | self on: e ]
 ]
 
+{ #category : #utilites }
+FpFITDataResource class >> decodeDate: aString [
+	^ '12/31/1989' asDate asDateAndTime translateToUTC + aString asNumber seconds offset: LocalTimeZone new offset
+]
+
 { #category : #'file types' }
 FpFITDataResource class >> fileExtensions [
 	^ #('fit')

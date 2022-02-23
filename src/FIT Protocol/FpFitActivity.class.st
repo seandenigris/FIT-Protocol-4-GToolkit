@@ -2,7 +2,8 @@ Class {
 	#name : #FpFitActivity,
 	#superclass : #Object,
 	#instVars : [
-		'data'
+		'data',
+		'summary'
 	],
 	#category : #'FIT Protocol-FIT Protocol'
 }
@@ -12,6 +13,11 @@ FpFitActivity class >> allFromFiles [
 	^ FpFITDataResource allFromFiles collect: [ :e | self fromResource: e ]
 ]
 
+{ #category : #accessing }
+FpFitActivity class >> decodeDate: aString [
+	^ FpFITDataResource decodeDate: aString
+]
+
 { #category : #'instance creation' }
 FpFitActivity class >> fromResource: convertibleToResource [
 	| rawData recordRows records |
@@ -19,6 +25,7 @@ FpFitActivity class >> fromResource: convertibleToResource [
 	recordRows := (rawData allButFirst: 10) allButLast: 2.
 	records:= recordRows collect: [ :e | FpFitRecord on: e ].
 	^ self new
+		summary: (rawData at: 7);
 		data: records;
 		yourself
 ]
@@ -113,4 +120,50 @@ FpFitActivity >> powerChart [
 { #category : #accessing }
 FpFitActivity >> powerDataSeries [
 	^ self dataSeries: #power.
+]
+
+{ #category : #accessing }
+FpFitActivity >> printOn: aStream [
+	aStream
+		nextPutAll: self startTime asDate mmddyyyy;
+		nextPutAll: ' - cycling for ';
+		print: self totalTime asMinutes rounded;
+		nextPutAll: ' minutes (';
+		print: (self totalDistance roundTo: 0.1);
+		nextPutAll: ' miles, ';
+		print: self totalCalories rounded;
+		nextPutAll: ' calories';
+		nextPutAll: ')'
+]
+
+{ #category : #accessing }
+FpFitActivity >> startTime [
+	^ self class decodeDate: self summary eighth
+]
+
+{ #category : #accessing }
+FpFitActivity >> summary [
+
+	^ summary
+]
+
+{ #category : #accessing }
+FpFitActivity >> summary: anObject [
+
+	summary := anObject
+]
+
+{ #category : #accessing }
+FpFitActivity >> totalCalories [
+	^ (self summary at: 20) asNumber
+]
+
+{ #category : #accessing }
+FpFitActivity >> totalDistance [
+	^ (self summary at: 17) asNumber "meters" * 0.00062 "to miles"
+]
+
+{ #category : #accessing }
+FpFitActivity >> totalTime [
+	^ (self summary at: 11) asNumber seconds
 ]

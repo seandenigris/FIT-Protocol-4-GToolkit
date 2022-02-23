@@ -22,6 +22,7 @@ FpFitRecord >> cadence [
 
 { #category : #accessing }
 FpFitRecord >> pelotonResistance [
+	"This is a rough generalization for Echelon -> Peloton conversion. We could make this user configurable if the need arises. See comment at end for more info"
 	| pelotonRange echelonRange echelonResistance |
 	pelotonRange := 20 to: 100.
 	echelonRange := 9 to: 32.
@@ -29,9 +30,7 @@ FpFitRecord >> pelotonResistance [
 	echelonResistance := (self rawData at: 20) asNumber.
 	^ ((echelonResistance - echelonRange min) * pelotonRange range / echelonRange range) + pelotonRange min.
 	
-	"Echelon to Peloton resistance conversion: Apparently, you can figure this out for yourself based on your actual bike (their calibration varies)
-
-https://imgur.com/gallery/9ZqPA1w is apparently from a power meter"
+	"Echelon to Peloton resistance conversion: Apparently, if you want to be really accurant, you can figure this out for yourself based on your actual bike (each bike's calibration varies). There is a guide on how to do this at https://www.reddit.com/r/pelotoncycle/wiki/index/resistancechart"
 ]
 
 { #category : #accessing }
@@ -56,5 +55,5 @@ FpFitRecord >> time [
 
 { #category : #accessing }
 FpFitRecord >> timestamp [
-	^ '12/31/1989' asDate asDateAndTime translateToUTC + (self rawData at: 29) asNumber seconds offset: LocalTimeZone new offset
+	^ FpFITDataResource decodeDate: (self rawData at: 29)
 ]
