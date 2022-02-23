@@ -21,6 +21,6 @@ BaselineOfFITProtocol >> baseline: spec [
 				spec repository: 'github://seandenigris/Resources-Live' ];
 			baseline: 'SimplePersistence' with: [
 				spec repository: 'github://seandenigris/Simple-Persistence' ];
-			package: #'Fit Protocol'  with: [
+			package: #'FIT Protocol'  with: [
 				spec requires: #(#'DataFrame' #'ResourcesLive' ) ] ]
 ]
