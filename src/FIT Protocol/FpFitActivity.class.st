@@ -7,6 +7,11 @@ Class {
 	#category : #'FIT Protocol-FIT Protocol'
 }
 
+{ #category : #accessing }
+FpFitActivity class >> allFromFiles [
+	^ FpFITDataResource allFromFiles collect: [ :e | self fromResource: e ]
+]
+
 { #category : #'instance creation' }
 FpFitActivity class >> fromResource: convertibleToResource [
 	| rawData recordRows records |
