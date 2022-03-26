@@ -1,3 +1,6 @@
+"
+Check out the [demo on YouTube](https://youtu.be/Cydd6WCahx0)
+"
 Class {
 	#name : #BaselineOfFITProtocol,
 	#superclass : #BaselineOf,
