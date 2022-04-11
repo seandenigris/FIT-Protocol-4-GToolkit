@@ -14,7 +14,7 @@ DataSeries >> gtStatsViewFor: aView [
 				
 	^ aView columnedList
 		title: 'Stats';
-		priority: 50;
+		priority: 500;
 		items: [ #( average median max min mode range zerothQuartile
 			firstQuartile secondQuartile thirdQuartile fourthQuartile
 			interquartileRange stdev variance ) ];
