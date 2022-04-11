@@ -100,6 +100,15 @@ FpFitActivity >> dataSeries: aSelector [
 ]
 
 { #category : #accessing }
+FpFitActivity >> gtViewRecordsOn: aView [
+	<gtView>
+	^ aView list
+		title: 'Records' translated;
+		priority: 25;
+		items: [ self data ]
+]
+
+{ #category : #accessing }
 FpFitActivity >> pelotonResistanceChart [
 
 	^ self chart: #pelotonResistance

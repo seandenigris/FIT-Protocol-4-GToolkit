@@ -39,6 +39,12 @@ FpFitRecord >> power [
 ]
 
 { #category : #accessing }
+FpFitRecord >> printOn: aStream [
+
+	aStream print: rawData
+]
+
+{ #category : #accessing }
 FpFitRecord >> rawData [
 	^ rawData
 ]
