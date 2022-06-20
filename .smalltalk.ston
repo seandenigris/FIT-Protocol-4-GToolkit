@@ -1,0 +1,9 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'FITProtocol',
+      #directory : 'src',
+      #platforms : [ #pharo ]
+    }
+  ]
+}
