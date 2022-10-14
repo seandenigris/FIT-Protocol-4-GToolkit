@@ -43,13 +43,14 @@ FpFitActivity >> cadenceDataSeries [
 { #category : #accessing }
 FpFitActivity >> chart: aSelector [
 
-	| aData |
+	| aData start |
 	aData := GtPlotterDataGroup new values: self data.
 	aData := aData colored: Color blue.
+	start := self data first time.
 	
 	^ GtPlotterLineChart new
 		with: aData;
-		valueX: [ :e | e time asDuration - self data first time asDuration ];
+		valueX: [ :e | e time asDuration - start asDuration ];
 		scaleX: GtPlotterDurationScale new;
 		labelFormatX: #amount;
 		titleX: 'Time (minutes)';
