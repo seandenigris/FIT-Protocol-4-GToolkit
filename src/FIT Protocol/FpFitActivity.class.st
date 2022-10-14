@@ -22,7 +22,9 @@ FpFitActivity class >> decodeDate: aString [
 FpFitActivity class >> fromResource: convertibleToResource [
 	| rawData recordRows records |
 	rawData := convertibleToResource asRlResource csv.
-	recordRows := (rawData allButFirst: 10) allButLast: 2.
+	
+	self flag: 'strip out headers and lap markers for now'.
+	recordRows := ((rawData allButFirst: 10) allButLast: 2) select: [ :col | col first = 'Data' and: [ col third = 'record' ] ].
 	records:= recordRows collect: [ :e | FpFitRecord on: e ].
 	^ self new
 		summary: (rawData at: 7);
