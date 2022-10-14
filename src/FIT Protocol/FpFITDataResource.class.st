@@ -7,7 +7,7 @@ Class {
 { #category : #accessing }
 FpFITDataResource class >> allFromFiles [
 	| fitFiles |
-	fitFiles := (FileLocator dynabookData / 'FIT' / 'FIT Data Files') filesMatching: '*.fit'.
+	fitFiles := (self rootFolder / 'FIT Data Files') filesMatching: '*.fit'.
 	^ fitFiles collect: [ :e | self on: e ]
 ]
 
@@ -22,13 +22,18 @@ FpFITDataResource class >> fileExtensions [
 ]
 
 { #category : #accessing }
+FpFITDataResource class >> rootFolder [
+	^ FileLocator dynabookData / 'FIT'
+]
+
+{ #category : #accessing }
 FpFITDataResource >> activity [
 	^ FpFitActivity fromResource: self
 ]
 
 { #category : #accessing }
 FpFITDataResource >> csv [
-	| csvResource rawRecords records |
+	| csvResource |
 	self csvFileReference exists ifFalse: [ self exportAsCSV ].
 	csvResource := RlCSV on: self csvFileReference.
 	^ csvResource asArraysOfStrings
@@ -41,14 +46,19 @@ FpFITDataResource >> csvFileReference [
 
 { #category : #accessing }
 FpFITDataResource >> exportAsCSV [
-	| finalReference |
 	SuGenericUnixCommand new
 		template: 'java -jar {csvToolJar} {fitFile}';
-		argumentAt: #csvToolJar put: '/Users/sean/Documents/Reference/Smalltalk/User Data/FIT/FitSDKRelease_21.67.00/java/FitCSVTool.jar' asFileReference;
+		argumentAt: #csvToolJar put: self rootFolder / 'Fit SDK' / 'java' / 'FitCSVTool.jar';
 		argumentAt: #fitFile put: self file;
 		run.
-	
-	self file withoutExtension, 'csv' moveTo: self csvFileReference.
-	
+
+	self file withoutExtension , 'csv' moveTo: self csvFileReference.
+
 	^ RlCSV on: self csvFileReference
+]
+
+{ #category : #accessing }
+FpFITDataResource >> rootFolder [
+
+	^ self class rootFolder
 ]

@@ -37,7 +37,7 @@ FpFitActivity >> cadenceChart [
 
 { #category : #accessing }
 FpFitActivity >> cadenceDataSeries [
-	^ self dataSeries:  #cadence.
+	^ self dataSeries: #cadence.
 ]
 
 { #category : #accessing }
