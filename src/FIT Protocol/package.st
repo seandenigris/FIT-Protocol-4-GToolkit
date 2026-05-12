@@ -1,1 +1,1 @@
-Package { #name : #'FIT Protocol' }
+Package { #name : 'FIT Protocol' }

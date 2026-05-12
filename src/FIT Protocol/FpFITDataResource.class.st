@@ -1,37 +1,38 @@
 Class {
-	#name : #FpFITDataResource,
-	#superclass : #RlResource,
-	#category : #'FIT Protocol'
+	#name : 'FpFITDataResource',
+	#superclass : 'RlResource',
+	#category : 'FIT Protocol',
+	#package : 'FIT Protocol'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFITDataResource class >> allFromFiles [
 	| fitFiles |
 	fitFiles := (self rootFolder / 'FIT Data Files') filesMatching: '*.fit'.
 	^ fitFiles collect: [ :e | self on: e ]
 ]
 
-{ #category : #utilites }
+{ #category : 'utilites' }
 FpFITDataResource class >> decodeDate: aString [
 	^ '12/31/1989' asDate asDateAndTime translateToUTC + aString asNumber seconds offset: LocalTimeZone new offset
 ]
 
-{ #category : #'file types' }
+{ #category : 'file types' }
 FpFITDataResource class >> fileExtensions [
 	^ #('fit')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFITDataResource class >> rootFolder [
 	^ FileLocator dynabookData / 'FIT'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFITDataResource >> activity [
 	^ FpFitActivity fromResource: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFITDataResource >> csv [
 	| csvResource |
 	self csvFileReference exists ifFalse: [ self exportAsCSV ].
@@ -39,12 +40,12 @@ FpFITDataResource >> csv [
 	^ csvResource asArraysOfStrings
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFITDataResource >> csvFileReference [
 	^ self file parent / 'CSV Cache' / self file base, 'csv'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFITDataResource >> exportAsCSV [
 	SuGenericUnixCommand new
 		template: 'java -jar {csvToolJar} {fitFile}';
@@ -57,7 +58,7 @@ FpFITDataResource >> exportAsCSV [
 	^ RlCSV on: self csvFileReference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFITDataResource >> rootFolder [
 
 	^ self class rootFolder

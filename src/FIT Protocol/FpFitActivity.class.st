@@ -1,24 +1,26 @@
 Class {
-	#name : #FpFitActivity,
-	#superclass : #Object,
+	#name : 'FpFitActivity',
+	#superclass : 'Object',
 	#instVars : [
 		'data',
 		'summary'
 	],
-	#category : #'FIT Protocol-FIT Protocol'
+	#category : 'FIT Protocol-FIT Protocol',
+	#package : 'FIT Protocol',
+	#tag : 'FIT Protocol'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity class >> allFromFiles [
 	^ FpFITDataResource allFromFiles collect: [ :e | self fromResource: e ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity class >> decodeDate: aString [
 	^ FpFITDataResource decodeDate: aString
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 FpFitActivity class >> fromResource: convertibleToResource [
 	| rawData recordRows records |
 	rawData := convertibleToResource asRlResource csv.
@@ -32,17 +34,17 @@ FpFitActivity class >> fromResource: convertibleToResource [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> cadenceChart [
 	^ self chart: #cadence
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> cadenceDataSeries [
 	^ self dataSeries: #cadence.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> chart: aSelector [
 
 	| aData start |
@@ -63,17 +65,17 @@ FpFitActivity >> chart: aSelector [
 		ticksY: 10.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> data [
 	^ data
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FpFitActivity >> data: aCollection [ 
 	data := aCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> dataFrame [
 	| result |
 	result := DataFrame withColumns: {
@@ -86,7 +88,7 @@ FpFitActivity >> dataFrame [
 	^ result
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> dataSeries [
 	^ DataSeries
         withKeys: (self data collect: [ :e | e timestamp asTime])
@@ -94,7 +96,7 @@ FpFitActivity >> dataSeries [
         name: #cadence.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> dataSeries: aSelector [
 	^ DataSeries
         withKeys: (self data collect: [ :e | e timestamp asTime ])
@@ -102,7 +104,7 @@ FpFitActivity >> dataSeries: aSelector [
         name: aSelector.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> gtViewRecordsOn: aView [
 	<gtView>
 	^ aView list
@@ -111,30 +113,30 @@ FpFitActivity >> gtViewRecordsOn: aView [
 		items: [ self data ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> pelotonResistanceChart [
 
 	^ self chart: #pelotonResistance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> pelotonResistanceDataSeries [
 
 	^ self dataSeries: #pelotonResistance
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> powerChart [
 
 	^ self chart: #power
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> powerDataSeries [
 	^ self dataSeries: #power.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> printOn: aStream [
 	aStream
 		nextPutAll: self startTime asDate mmddyyyy;
@@ -148,34 +150,34 @@ FpFitActivity >> printOn: aStream [
 		nextPutAll: ')'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> startTime [
 	^ self class decodeDate: self summary eighth
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> summary [
 
 	^ summary
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> summary: anObject [
 
 	summary := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> totalCalories [
 	^ (self summary at: 20) asNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> totalDistance [
 	^ (self summary at: 17) asNumber "meters" * 0.00062 "to miles"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitActivity >> totalTime [
 	^ (self summary at: 11) asNumber seconds
 ]

@@ -1,6 +1,6 @@
-Extension { #name : #DataSeries }
+Extension { #name : 'DataSeries' }
 
-{ #category : #'*FIT Protocol' }
+{ #category : '*FIT Protocol' }
 DataSeries >> gtStatsViewFor: aView [
 	<gtView>
 

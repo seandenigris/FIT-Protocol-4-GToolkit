@@ -1,13 +1,14 @@
 Class {
-	#name : #FpFitRecord,
-	#superclass : #Object,
+	#name : 'FpFitRecord',
+	#superclass : 'Object',
 	#instVars : [
 		'rawData'
 	],
-	#category : #'FIT Protocol'
+	#category : 'FIT Protocol',
+	#package : 'FIT Protocol'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitRecord class >> on: anArray [
 
 	^ self new
@@ -15,12 +16,12 @@ FpFitRecord class >> on: anArray [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitRecord >> cadence [
 	^ (self rawData at: 8) asNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitRecord >> pelotonResistance [
 	"This is a rough generalization for Echelon -> Peloton conversion. We could make this user configurable if the need arises. See comment at end for more info"
 	| pelotonRange echelonRange echelonResistance |
@@ -33,33 +34,33 @@ FpFitRecord >> pelotonResistance [
 	"Echelon to Peloton resistance conversion: Apparently, if you want to be really accurant, you can figure this out for yourself based on your actual bike (each bike's calibration varies). There is a guide on how to do this at https://www.reddit.com/r/pelotoncycle/wiki/index/resistancechart"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitRecord >> power [
 	^ (self rawData at: 17) asNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitRecord >> printOn: aStream [
 
 	aStream print: rawData
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitRecord >> rawData [
 	^ rawData
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 FpFitRecord >> rawData: anArray [
 	rawData := anArray
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitRecord >> time [
 	^ self timestamp asTime
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FpFitRecord >> timestamp [
 	^ FpFITDataResource decodeDate: (self rawData at: 29)
 ]
